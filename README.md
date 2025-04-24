@@ -31,57 +31,71 @@ The objective was to:
 
 ### 1. Launch an EC2 Instance
 
-- Use the AWS Console to launch a new EC2 instance.
-- Choose Amazon Linux 2023 AMI.
-- Select `t2.micro` instance type.
-- Create a new key pair (e.g., `nextwork-keypair.pem`) and download it.
-- Configure security group to allow SSH (port 22) from your IP.
+1. Use the AWS Console to launch a new EC2 instance.
+2. Choose Amazon Linux 2023 AMI.
+3. Select `t2.micro` instance type.
+4. Create a new key pair (e.g., `nextwork-keypair.pem`) and download it.
+5. Configure the security group to allow SSH (port 22) from your IP.
 
 ### 2. Set Up VSCode
 
-- Install [Visual Studio Code](https://code.visualstudio.com/).
-- Install the **Remote - SSH** extension.
-- Configure SSH in VSCode:
+1. Install [Visual Studio Code](https://code.visualstudio.com/).
+2. Install the **Remote - SSH** extension.
+3. Configure SSH in VSCode by adding the following to your SSH config file:
 
-  ```bash
-  Host my-ec2-instance
-      HostName <EC2_PUBLIC_IP>
-      User ec2-user
-      IdentityFile ~/.ssh/nextwork-keypair.pem
+    ```bash
+    Host my-ec2-instance
+         HostName <EC2_PUBLIC_IP>
+         User ec2-user
+         IdentityFile ~/.ssh/nextwork-keypair.pem
+    ```
 
-* Connect to the EC2 instance via VSCode.
+4. Connect to the EC2 instance via VSCode.
 
-3. Install Java and Maven on EC2
-	•	Update the package manager:
+### 3. Install Java and Maven on EC2
 
+1. Update the package manager:
+
+    ```bash
     sudo yum update -y
+    ```
 
-	•	Install Java (Amazon Corretto 8):
+2. Install Java (Amazon Corretto 8):
 
+    ```bash
     sudo yum install java-1.8.0-amazon-corretto -y
+    ```
 
-    •	Install Maven:
+3. Install Maven:
 
+    ```bash
     sudo yum install maven -y
+    ```
 
-4. Generate Java Web Application
-	•	Use Maven to generate a web application:
+### 4. Generate Java Web Application
 
+1. Use Maven to generate a web application:
+
+    ```bash
     mvn archetype:generate \
-  -DgroupId=com.nextwork.app \
-  -DartifactId=nextwork-web-project \
-  -DarchetypeArtifactId=maven-archetype-webapp \
-  -DinteractiveMode=false
+         -DgroupId=com.nextwork.app \
+         -DartifactId=nextwork-web-project \
+         -DarchetypeArtifactId=maven-archetype-webapp \
+         -DinteractiveMode=false
+    ```
 
-  	•	Navigate to the project directory:
+2. Navigate to the project directory:
 
+    ```bash
     cd nextwork-web-project
+    ```
 
-5. Explore and Edit in VSCode
-	•	In VSCode, open the nextwork-web-project folder.
-	•	Explore the project structure:
-	•	src/main/webapp: Contains HTML, JSP files.
-	•	pom.xml: Maven configuration file.
+### 5. Explore and Edit in VSCode
+
+1. In VSCode, open the `nextwork-web-project` folder.
+2. Explore the project structure:
+    - `src/main/webapp`: Contains HTML, JSP files.
+    - `pom.xml`: Maven configuration file.
 
 ## 📎 Documentation
 
